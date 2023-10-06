@@ -18,9 +18,22 @@ cc_library(
 )
 
 cc_library(
+    name = "cmsis",
+    hdrs = ["weak.h"],
+    srcs = ["weak_obj.c"],
+)
+
+
+cc_library(
     name = "override",
     srcs = ["strong.c"],
     deps = [":hal"],
+)
+
+cc_library(
+    name = "cmsis_override",
+    hdrs = ["weak.h"],
+    srcs = ["strong_obj.c"],
 )
 
 cc_binary(
@@ -29,5 +42,7 @@ cc_binary(
     deps = [
         ":override",
         ":hal",
+        ":cmsis",
+        ":cmsis_override",
     ],
 )

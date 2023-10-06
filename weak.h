@@ -19,3 +19,6 @@
 //
 // you'd get a segfault at runtime with bazel run :main.
 void A();
+
+
+extern int variable;
