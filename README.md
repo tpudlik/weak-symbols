@@ -3,11 +3,19 @@
 A minimal example of weak symbol linking problems. See
 https://issues.pigweed.dev/303846960 for context.
 
+## Cloning
+
+After cloning the repository, run `git submodule --update init` to get the
+Pigweed submodule (can't be pulled in via WORKSPACE for obscure reasons,
+https://issues.pigweed.dev/300695111).
+
 ## Building
 
 If you run,
 
+```
 bazel run :main
+```
 
 Bazel will build the binary with the hermetic clang configured in upstream
 Pigweed,
@@ -16,7 +24,9 @@ and then run it.
 
 If you run,
 
+```
 bazel build --platforms=//targets:cortex-m4 :main
+```
 
 Bazel will build the binary with Arm GCC, configured
 [here](https://cs.opensource.google/pigweed/pigweed/+/main:pw_toolchain/arm_gcc/BUILD.bazel).
