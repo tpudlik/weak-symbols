@@ -33,7 +33,7 @@ Bazel will build the binary with Arm GCC, configured
 
 ## Results
 
-The illustration doesn't quite work, because everything looks fine:
+In the code-as-checked-in everything looks fine:
 
 1.  The binary built with the host clang prints,
 
@@ -55,3 +55,8 @@ The illustration doesn't quite work, because everything looks fine:
     ```
 
     This indicates that the strong symbol was correctly linked in.
+
+But you can break the program by adding `__attribute((weak))__` to the function
+declaration in `weak.h`. It will still compile, but at runtime you'll get a
+segmentation fault (with host clang). And `nm` on the Cortex-M4 binary shows no
+entry for `A` at all.

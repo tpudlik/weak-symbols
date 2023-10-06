@@ -13,4 +13,9 @@
 // the License.
 #pragma once
 
+// If you replaced the next line with,
+//
+// __attribute__((weak)) void A();
+//
+// you'd get a segfault at runtime with bazel run :main.
 void A();
