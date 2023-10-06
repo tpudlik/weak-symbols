@@ -1,1 +1,42 @@
 # weak-symbols
+
+A minimal example of weak symbol linking problems. See
+https://issues.pigweed.dev/303846960 for context.
+
+## Building
+
+If you run,
+
+bazel run :main
+
+Bazel will build the binary with the hermetic clang configured in upstream
+Pigweed,
+[here](https://cs.opensource.google/pigweed/pigweed/+/main:pw_toolchain/host_clang/BUILD.bazel),
+and then run it.
+
+If you run,
+
+bazel build --platforms=//targets:cortex-m4 :main
+
+Bazel will build the binary with Arm GCC, configured
+[here](https://cs.opensource.google/pigweed/pigweed/+/main:pw_toolchain/arm_gcc/BUILD.bazel).
+
+## Results
+
+The illustration doesn't quite work, because everything looks fine:
+
+1.  The binary built with the host clang prints,
+
+    ```
+    Calling A
+    strong A!
+    ```
+
+2.  I ran `nm --demangle` on the binary produced by Arm GCC. The output includes
+    the line,
+
+    ```
+    00008164 T A
+    ```
+
+    again, this indicates that the strong symbol was correctly linked in.
