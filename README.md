@@ -42,11 +42,16 @@ The illustration doesn't quite work, because everything looks fine:
     strong A!
     ```
 
-2.  I ran `nm --demangle` on the binary produced by Arm GCC. The output includes
-    the line,
+2.  I ran `nm --demangle` on the binary produced by Arm GCC, via
+
+    ```
+    $(bazel info output_base)/external/gcc_arm_none_eabi_toolchain/bin/arm-none-eabi-gcc-nm --demangle bazel-bin/main > /tmp/nm.txt
+    ```
+
+    The output includes the line,
 
     ```
     00008164 T A
     ```
 
-    again, this indicates that the strong symbol was correctly linked in.
+    This indicates that the strong symbol was correctly linked in.
