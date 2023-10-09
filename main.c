@@ -24,6 +24,9 @@ void x_func() {
 
   printf("Variable address is %0lx\n", (intptr_t)(&variable));
   printf("Variable is %s\n", variable==42? "strong": variable==100? "weak":"undefined");
+
+  printf("Calling a callback ...\n");
+  Callback();
 }
 
 int main(void) { x_func(); }

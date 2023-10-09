@@ -22,3 +22,7 @@ void A();
 
 
 extern int variable;
+
+void Callback();
+
+void Caller();
