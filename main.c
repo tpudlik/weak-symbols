@@ -26,7 +26,7 @@ void x_func() {
   printf("Variable is %s\n", variable==42? "strong": variable==100? "weak":"undefined");
 
   printf("Calling a callback ...\n");
-  Callback();
+  Caller();
 }
 
 int main(void) { x_func(); }
